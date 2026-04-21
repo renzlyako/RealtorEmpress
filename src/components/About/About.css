@@ -1,0 +1,166 @@
+.about {
+  /* Match Figma: centered section with generous side gutters */
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 80px clamp(8px, 2.1vw, 42px);
+  background-color: #f0f2f4;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+/* ── ROW — always side by side ── */
+.about__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 80px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about__row--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── IMAGE WRAPPER ── */
+.about__img-wrap {
+  position: relative;
+  flex: 0 0 560px;
+  height: 560px;
+  border-radius: 28px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.about__img-wrap--man {
+  overflow: hidden;
+  flex: 0 0 560px;
+  height: 560px;
+}
+
+/* Square bg */
+.about__square {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 28px;
+  z-index: 0;
+}
+
+/* Photo on top of square */
+.about__photo {
+  position: absolute;
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.about__photo--hand {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  left: 0;
+}
+
+/* Man overflows upward outside the box */
+.about__photo--man {
+  width: 90%;
+  height: 130%;
+  object-fit: contain;
+  object-position: bottom center;
+  bottom: -4%;
+  left: 5%;
+}
+
+/* ── TEXT ── */
+.about__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+}
+
+.about__heading {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 800;
+  color: #0d2f4f;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.about__desc {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #4a6070;
+  line-height: 1.75;
+  max-width: 520px;
+}
+
+.about__btn {
+  background-color: #0d2f4f;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  width: fit-content;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.about__btn:hover {
+  background-color: #1a4a6b;
+  transform: translateY(-2px);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .about {
+    padding: 60px clamp(6px, 1.5vw, 17px);
+    gap: 80px;
+  }
+
+  .about__img-wrap {
+    flex: 0 0 360px;
+    height: 360px;
+  }
+
+  .about__row {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 48px 24px;
+    gap: 64px;
+  }
+
+  .about__row {
+    flex-direction: column !important;
+    gap: 32px;
+  }
+
+  .about__img-wrap {
+    flex: none;
+    width: 100%;
+    height: 320px;
+  }
+
+  .about__text--right {
+    text-align: left;
+    align-items: flex-start;
+  }
+}

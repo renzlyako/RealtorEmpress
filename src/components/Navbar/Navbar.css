@@ -1,0 +1,201 @@
+/* ── NAVBAR ── */
+/* Increase navbar height to fit the bigger logo */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(13, 47, 79, 0.08);
+  box-shadow: 0 2px 16px rgba(13, 47, 79, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(18px, 5vw, 80px);
+  height: 110px; /* ← was 72px, now matches 100px logo */
+  flex-wrap: wrap;
+}
+
+/* ── Logo ── */
+.navbar__logo {
+  flex-shrink: 0;
+}
+
+.navbar__logo-img {
+  height: 100px;
+  width: auto;
+  display: block;
+}
+
+/* ── Desktop Links ── */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__item {
+  display: flex;
+}
+
+.navbar__link {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5d7586;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.navbar__link:hover {
+  color: #0d2f4f;
+  background: rgba(13, 47, 79, 0.04);
+}
+
+.navbar__link--active {
+  color: #0d2f4f;
+  font-weight: 700;
+  border-bottom-color: #0d2f4f;
+}
+
+/* ── CTA Button ── */
+.navbar__cta {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #0d2f4f;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.navbar__cta:hover {
+  background: #1a4a6b;
+  transform: translateY(-1px);
+}
+
+.navbar__cta:active {
+  transform: translateY(0);
+}
+
+/* ── Hamburger — hidden on desktop ── */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.navbar__hamburger:hover {
+  background: rgba(13, 47, 79, 0.06);
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #0d2f4f;
+  border-radius: 99px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animate to X when open */
+.navbar__hamburger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__hamburger--open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar__hamburger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile dropdown menu ── */
+.navbar__mobile-menu {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid rgba(13, 47, 79, 0.08);
+  box-shadow: 0 8px 24px rgba(13, 47, 79, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 24px 20px;
+  gap: 2px;
+  z-index: 999;
+  animation: menuSlide 0.25s ease both;
+}
+
+@keyframes menuSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.navbar__mobile-link {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #5d7586;
+  text-decoration: none;
+  padding: 13px 8px;
+  border-bottom: 1px solid rgba(13, 47, 79, 0.06);
+  transition: color 0.2s ease;
+}
+
+.navbar__mobile-link:hover,
+.navbar__mobile-link--active {
+  color: #0d2f4f;
+  font-weight: 700;
+}
+
+.navbar__cta--mobile {
+  margin-top: 12px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  /* Hide desktop links and contact button */
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__cta--desktop {
+    display: none;
+  }
+
+  /* Show hamburger */
+  .navbar__hamburger {
+    display: flex;
+  }
+}

@@ -1,0 +1,230 @@
+/* ── FAQ ── */
+.faq {
+  padding: 80px clamp(18px, 5vw, 80px) 96px;
+  background-color: #f0f2f4;
+}
+
+.faq__container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ── Header — matches Projects / Testimonials layout ── */
+.faq__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.faq__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faq__heading {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  color: #0d2f4f;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.faq__subhead {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: #5d7586;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Contact button — matches site button style */
+.faq__contact-btn {
+  appearance: none;
+  background: transparent;
+  border: 2px solid #0d2f4f;
+  border-radius: 999px;
+  padding: 12px 26px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0d2f4f;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.faq__contact-btn:hover {
+  background: #0d2f4f;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.faq__contact-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Accordion List ── */
+.faq__list {
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(13, 47, 79, 0.08);
+}
+
+/* ── Individual Item ── */
+.faq__item {
+  border-bottom: 0.5px solid rgba(13, 47, 79, 0.1);
+}
+
+.faq__item:last-child {
+  border-bottom: none;
+}
+
+/* ── Question button ── */
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.faq__question:hover {
+  background: rgba(13, 47, 79, 0.02);
+}
+
+.faq__question-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0d2f4f;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* ── Plus / Cross Icon ── */
+.faq__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(13, 47, 79, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.25s ease, border-color 0.25s ease;
+  color: #0d2f4f;
+}
+
+.faq__icon svg {
+  width: 11px;
+  height: 11px;
+}
+
+/* Vertical bar of the plus — rotates to hide when open (making it a minus) */
+.faq__icon-v {
+  transform-origin: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.faq__item--open .faq__icon {
+  background: #0d2f4f;
+  border-color: #0d2f4f;
+  color: #ffffff;
+}
+
+.faq__item--open .faq__icon-v {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+/* ── Answer panel ── */
+.faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.faq__item--open .faq__answer {
+  grid-template-rows: 1fr;
+}
+
+.faq__answer-text {
+  overflow: hidden;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: #5d7586;
+  line-height: 1.75;
+  padding: 0 32px 24px 32px;
+  margin: 0;
+}
+
+/* Active item left accent line */
+.faq__item--open .faq__question {
+  background: rgba(13, 47, 79, 0.02);
+}
+
+.faq__item--open {
+  border-left: 3px solid #0d2f4f;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .faq__question {
+    padding: 20px 24px;
+  }
+
+  .faq__answer-text {
+    padding: 0 24px 20px 24px;
+  }
+
+  .faq__question-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .faq__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .faq__question {
+    padding: 18px 20px;
+  }
+
+  .faq__answer-text {
+    padding: 0 20px 18px 20px;
+    font-size: 13px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .faq__answer {
+    transition: none;
+  }
+
+  .faq__icon-v {
+    transition: none;
+  }
+
+  .faq__icon {
+    transition: none;
+  }
+}

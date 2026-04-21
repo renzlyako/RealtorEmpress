@@ -1,0 +1,251 @@
+/* ── STAGING MOOD BOARD ── */
+.moodboard {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 12px;
+  background: linear-gradient(145deg, #f8fafc 0%, #eef2f7 100%);
+}
+
+.moodboard__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── 3D flip container ── */
+.moodboard__card {
+  perspective: 900px;
+  cursor: pointer;
+  animation: cardEntrance 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  min-height: 0;
+}
+
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(16px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+.moodboard__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 18px;
+}
+
+.moodboard__card--flipped .moodboard__inner {
+  transform: rotateY(180deg);
+}
+
+/* ── Shared face styles ── */
+.moodboard__front,
+.moodboard__back {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  /* KEY FIX: hide the face when it's rotated away */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* Back face starts pre-rotated so it's hidden until flipped */
+.moodboard__back {
+  transform: rotateY(180deg);
+}
+
+/* ── Background images ── */
+.moodboard__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* FRONT: blurred */
+.moodboard__img--blurred {
+  filter: blur(5px);
+  transform: scale(1.08); /* prevents blur edge bleeding */
+}
+
+/* BACK: sharp */
+.moodboard__img--sharp {
+  filter: none;
+}
+
+/* ── Overlays ── */
+.moodboard__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.moodboard__back-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ── FRONT content ── */
+.moodboard__front-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 10px;
+  gap: 6px;
+}
+
+.moodboard__swatches {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.moodboard__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.moodboard__emoji {
+  font-size: clamp(22px, 3vw, 32px);
+  line-height: 1;
+}
+
+.moodboard__style {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.moodboard__hint {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* ── BACK content ── */
+/* NO rotateY here — the parent .moodboard__back already has rotateY(180deg)
+   so the content inside is automatically corrected */
+.moodboard__back-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px 12px;
+  gap: 6px;
+}
+
+.moodboard__back-emoji {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.moodboard__back-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.moodboard__back-tip {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(9px, 0.85vw, 11px);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+}
+
+.moodboard__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.moodboard__tag {
+  font-family: 'Manrope', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 3px 8px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Footer ── */
+.moodboard__footer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  color: #9ab0be;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.moodboard__footer-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0d2f4f;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);   }
+  50%       { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .moodboard__inner {
+    transition: none;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .moodboard__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .moodboard__card:last-child {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    justify-self: center;
+  }
+}

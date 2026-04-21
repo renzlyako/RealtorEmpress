@@ -1,0 +1,372 @@
+/* ── TESTIMONIALS ── */
+.testi {
+  padding: 80px clamp(18px, 5vw, 80px) 96px;
+  background-color: #ffffff;
+}
+
+.testi__container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ── Header — matches Projects layout ── */
+.testi__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.testi__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.testi__heading {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  color: #0d2f4f;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.testi__subhead {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: #5d7586;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* View all button — matches Projects "View Gallery" button */
+.testi__view-btn {
+  appearance: none;
+  background: transparent;
+  border: 2px solid #0d2f4f;
+  border-radius: 999px;
+  padding: 12px 26px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0d2f4f;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.testi__view-btn:hover {
+  background: #0d2f4f;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.testi__view-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Stage ── */
+.testi__stage {
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(13, 47, 79, 0.1);
+}
+
+/* ── Card wrap — KEY FIX: fixed height, all cards stacked ── */
+.testi__card-wrap {
+  position: relative;
+  /* Fixed height so the box NEVER resizes between testimonials */
+  min-height: 300px;
+  background: linear-gradient(145deg, #f8fafc 0%, #eef2f7 100%);
+}
+
+/* All cards sit on top of each other, hidden by default */
+.testi__card {
+  position: absolute;
+  inset: 0;
+  padding: 52px 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+  pointer-events: none;
+}
+
+/* Only the active card is visible */
+.testi__card--active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Decorative quote mark */
+.testi__quote-icon {
+  width: 48px;
+  height: 36px;
+  color: #0d2f4f;
+  opacity: 0.08;
+  position: absolute;
+  top: 36px;
+  left: 52px;
+}
+
+.testi__quote {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 600;
+  color: #0d2f4f;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  margin: 0 0 20px 0;
+  max-width: 820px;
+  padding-top: 8px;
+
+  /* Clamp to 4 lines max so height stays consistent */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Stars */
+.testi__stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.testi__star {
+  width: 18px;
+  height: 18px;
+  color: #f5a623;
+}
+
+/* Author row */
+.testi__author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.testi__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.testi__avatar--card {
+  width: 52px;
+  height: 52px;
+  font-size: 15px;
+  box-shadow: 0 6px 18px rgba(13, 47, 79, 0.2);
+}
+
+.testi__author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testi__author-name {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #0d2f4f;
+  letter-spacing: -0.01em;
+}
+
+.testi__author-role {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  color: #5d7586;
+  font-weight: 500;
+}
+
+.testi__location {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  color: #8aa0b0;
+  font-weight: 500;
+}
+
+.testi__location svg {
+  width: 14px;
+  height: 14px;
+  color: #8aa0b0;
+  flex-shrink: 0;
+}
+
+/* ── Mishin Nav Bar ── */
+.testi__nav {
+  position: relative;
+  display: flex;
+  background: #0d2f4f;
+  overflow: hidden;
+}
+
+.testi__nav-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.07);
+  border-top: 2px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.testi__nav-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.25s ease;
+  text-align: left;
+  overflow: hidden;
+}
+
+.testi__nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.testi__nav-item--active .testi__avatar {
+  transform: scale(1.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.testi__nav-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.testi__nav-name {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.testi__nav-role {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.testi__nav-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.testi__nav-item--active .testi__nav-indicator {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .testi__card-wrap {
+    min-height: 320px;
+  }
+
+  .testi__card {
+    padding: 40px 36px 36px;
+  }
+
+  .testi__nav-info {
+    display: none;
+  }
+
+  .testi__nav-item {
+    justify-content: center;
+    padding: 16px 12px;
+  }
+
+  .testi__nav-indicator {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .testi__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .testi__card-wrap {
+    min-height: 360px;
+  }
+
+  .testi__card {
+    padding: 32px 24px 28px;
+  }
+
+  .testi__quote {
+    font-size: 15px;
+    -webkit-line-clamp: 5;
+  }
+
+  .testi__location {
+    display: none;
+  }
+
+  .testi__nav-highlight {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .testi__card {
+    transition: opacity 0.2s ease;
+    transform: none !important;
+  }
+
+  .testi__nav-highlight {
+    transition: none;
+  }
+}
